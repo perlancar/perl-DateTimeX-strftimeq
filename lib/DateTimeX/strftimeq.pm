@@ -11,6 +11,7 @@ use strict;
 use warnings;
 
 use POSIX ();
+use Scalar::Util 'blessed';
 
 use Exporter 'import';
 our @EXPORT = qw(strftimeq);
@@ -44,6 +45,19 @@ sub strftimeq {
     my ($format, @time) = @_;
 
     my ($dt, %compiled_code);
+
+    if (@time == 1 && blessed $time[0] && $time[0]->isa('DateTime')) {
+        $dt = $time[0];
+        @time = (
+            $dt->second,
+            $dt->minute,
+            $dt->hour,
+            $dt->day,
+            $dt->month-1,
+            $dt->year-1900,
+        );
+    }
+
     $format =~ s{$regex}{
         # for faster acccess
         my %m = %+;
@@ -93,6 +107,11 @@ sub strftimeq {
  print strftimeq '<%6Y-%m-%d%( $_->day_of_week eq 7 ? "sun" : "" )q>', @time; # <002019-11-19>
  print strftimeq '<%6Y-%m-%d%( $_->day_of_week eq 2 ? "tue" : "" )q>', @time; # <002019-11-19tue>
 
+You can also pass DateTime object instead of ($second, $minute, $hour, $day,
+$month, $year):
+
+ print strftimeq '<%6Y-%m-%d>', $dt; # <002019-11-19>
+
 
 =head1 DESCRIPTION
 
@@ -111,6 +130,7 @@ the DateTime object.
 Usage:
 
  $str = strftimeq $fmt, $sec, $min, $hour, $mday, $mon, $year;
+ $str = strftimeq $fmt, $dt;
 
 
 =head1 SEE ALSO
