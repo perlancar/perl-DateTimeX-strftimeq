@@ -100,7 +100,7 @@ sub strftimeq {
 
 =head1 SYNOPSIS
 
- use DateTimeX::strftime; # by default exports strftimeq()
+ use DateTimeX::strftimeq; # by default exports strftimeq()
 
  my @time = localtime();
  print strftimeq '<%6Y-%m-%d>', @time; # <002019-11-19>
