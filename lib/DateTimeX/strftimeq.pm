@@ -80,14 +80,14 @@ sub strftimeq {
  use DateTimeX::strftimeq; # by default exports strftimeq()
 
  my @time = localtime();
- print strftimeq '<%6Y-%m-%d>', @time; # <002019-11-19>
- print strftimeq '<%6Y-%m-%d%( $_->day_of_week eq 7 ? "sun" : "" )q>', @time; # <002019-11-19>
- print strftimeq '<%6Y-%m-%d%( $_->day_of_week eq 2 ? "tue" : "" )q>', @time; # <002019-11-19tue>
+ print strftimeq '<%-6Y-%m-%d>', @time; # <  2019-11-19>
+ print strftimeq '<%-6Y-%m-%d%( $_->day_of_week eq 7 ? "sun" : "" )q>', @time; # <  2019-11-19>
+ print strftimeq '<%-6Y-%m-%d%( $_->day_of_week eq 2 ? "tue" : "" )q>', @time; # <  2019-11-19tue>
 
 You can also pass DateTime object instead of ($second, $minute, $hour, $day,
 $month, $year):
 
- print strftimeq '<%6Y-%m-%d>', $dt; # <002019-11-19>
+ print strftimeq '<%-6Y-%m-%d>', $dt; # <  2019-11-19>
 
 
 =head1 DESCRIPTION
