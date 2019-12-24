@@ -2,6 +2,7 @@
 
 package DateTimeX::strftimeq;
 
+# AUTHORITY
 # DATE
 # DIST
 # VERSION
@@ -113,6 +114,8 @@ Usage:
 
 
 =head1 SEE ALSO
+
+L<Date::strftimeq> is exactly the same except it is DateTime-free.
 
 L<POSIX>'s C<strftime()>
 
