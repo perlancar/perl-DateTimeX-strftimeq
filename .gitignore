@@ -2,3 +2,4 @@ DateTimeX-strftimeq-*
 .build
 *~
 nytprof*
+.DS_Store
